@@ -1,0 +1,14 @@
+body {
+
+}
+
+#gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 10rem;
+    height: 10rem;
+}
+
+.tile {
+    border: solid black;
+}
