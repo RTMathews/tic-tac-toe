@@ -1,3 +1,8 @@
+const startButton = document.querySelector("#start-button");
+startButton.addEventListener("click", () => {
+    alert('hello');
+})
+
 function Gameboard() {
     const rows = 3;
     const columns = 3;
