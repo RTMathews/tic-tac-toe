@@ -1,19 +1,13 @@
-const startButton = document.querySelector("#start-button");
-startButton.addEventListener("click", () => {
-    alert('hello');
-})
-
-function Gameboard() {
-    const rows = 3;
-    const columns = 3;
-    const board = [];
-
-    for (let i = 0; i < rows; i++) {
-        board[i] = [];
-        for (let j = 0; j < columns; j++) {
-            board[i].push(Board());
+(function() {
+    const gameBoard = {
+        board: [],
+        init: function() {
+            this.cacheDom();
+        },
+        cacheDom: function() {
+            this.$el = $("#game-board");
         }
-    }
+    };
 
-    const getBoard = () => board;
-};
+    gameBoard.init();
+})()

@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <title>Tic-Tac-Toe</title>
 </head>
 <body>
-    <div class="container">
 
         <h1>Tic Tac Toe</h1>
-        <div id="gameboard"></div>
-        <div id="controls">
-            <input type="text" id="player1" placeholder="Player 1 Name">
-            <input type="text" id="player2" placeholder="Player 2 Name">
-            <button id="start-button">Start Game</button>
-            <button id="restar-button">Restart Game</button>
+        <div id="game-board">
+            <div data-index="1" class="tile right-border bottom-border">1</div>
+            <div data-index="2" class="tile right-border bottom-border">2</div>
+            <div data-index="3" class="tile bottom-border">3</div>
+            <div data-index="4" class="tile right-border bottom-border">4</div>
+            <div data-index="5" class="tile right-border bottom-border">5</div>
+            <div data-index="6" class="tile bottom-border">6</div>
+            <div data-index="7" class="tile right-border">7</div>
+            <div data-index="8" class="tile right-border">8</div>
+            <div data-index="9" class="tile">9</div>
+        </div>
+        <div id="players">
+            <div id="player1">X</div>
+            <div id="player2">O</div>
+        </div>
+        <div class="play-again-wrapper">
+            <button id="play-again">Play Again</button>
         </div>
         <div id="display-result"></div>
-    
-    </div>
 
     <script src="script/main.js"></script>
 </body>
