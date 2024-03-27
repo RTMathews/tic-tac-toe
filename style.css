@@ -13,3 +13,7 @@ body {
 .tile {
     border: solid black;
 }
+
+.x-hover:hover::after {
+    content: 'X';
+}
