@@ -1,19 +1,42 @@
 body {
     margin: 0;
     padding: 0;
+    text-align: center;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    justify-items: center;
 }
 
 #gameboard {
     display: grid;
+    grid-row: 1;
     grid-template-columns: repeat(3, 1fr);
-    width: 10rem;
-    height: 10rem;
+    width: 30rem;
+    height: 30rem;
 }
 
 .tile {
     border: solid black;
+    text-align: center;
+    padding-top: 4rem;
 }
 
-.x-hover:hover::after {
-    content: 'X';
+.text-wrapper {
+    text-align: center;
+}
+
+#pturn {
+    font-size: 3rem;
+}
+
+#result {
+    font-size: 4rem;
+}
+
+#interface{
+    padding-top: 5rem;
 }
