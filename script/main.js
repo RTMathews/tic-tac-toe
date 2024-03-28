@@ -1,62 +1,69 @@
-const createPlayer = (name, marker) => {
+const createPlayers = (name, marker) => {
     return {
         name,
-        marker,
+        marker
     }
 }
 
 const Game = (() => {
-    let currentPlayer = 0;
-    let isWon = false;
+    let isWin = false;
     let isTie = false;
+    let currentPlayer = 0;
     let gameOver = false;
+
+    let playerTurn = document.querySelector("#pturn");
+
     const start = () => {
         let players = [
-            createPlayer(document.querySelector('#player1').value, 'X'),
-            createPlayer(document.querySelector('#player2').value, 'O')
-    ]
-    if(players[0].name === "") {
-        players[0].name = "Player 1";
-    }
-    if(players[1].name === "") {
-        players[1].name = "Player 2";
-    }
-    let playerTurn = document.querySelector('#pturn');
-    playerTurn.textContent = `${players[currentPlayer].name}'s Turn`;
-    
-    const gameboard = Array.from(document.querySelectorAll('.tile'))
-    const handleBoard = (e) => {
-        if(gameOver) {
-            return;
+            createPlayers(document.querySelector("#player1").value, "X"),
+            createPlayers(document.querySelector("#player2").value, "O")
+        ]
+        if(players[0].name === "") {
+            players[0].name = "Player 1";
         }
-        e.target.textContent = players[currentPlayer].marker
-        if (isWon = checkWin(gameboard)) {
-            let result = document.querySelector('#result');
-            result.textContent = `${players[currentPlayer].name} Wins!`;
-            gameOver = true;
-            
-            console.log(`${players[currentPlayer].name}`);
-        } 
-        else if (isTie = checkTie(gameboard)){
-            gameOver = true;
-            let result = document.querySelector('#result');
-            result.textContent = "It's a tie!";
+        if(players[1].name === "") {
+            players[1].name = "Player 2";
         }
-        currentPlayer = currentPlayer === 0 ? 1 : 0;
-        let playerTurn = document.querySelector('#pturn');
-        playerTurn.textContent = `${players[currentPlayer].name}'s Turn`;
-    }
-    gameboard.forEach((tile) => {
-        tile.addEventListener('click', handleBoard, {once : true})
-    })
+
+        playerTurn.textContent = `${players[currentPlayer].name}'s turn`;
+
+        const handleClick = (e) => {
+            if(gameOver) {
+                return;
+            }
+
+            e.target.textContent = players[currentPlayer].marker;
+
+            if(isWin = checkWin(gameboard)) {
+                const result = document.querySelector("#result");
+                result.textContent = `${players[currentPlayer].name} wins!`;
+                gameOver = true;
+            }
+
+            else if(isTie = checkTie(gameboard)) {
+                const result = document.querySelector("#result");
+                result.textContent = "It's a tie!";
+                gameOver = true;
+            }
+
+            currentPlayer = currentPlayer === 0 ? 1 : 0;
+
+            playerTurn.textContent = `${players[currentPlayer].name}'s turn`;
+        }
+
+        const gameboard = Array.from(document.querySelectorAll(".tile"));
+        gameboard.forEach((tile) => {
+            tile.addEventListener("click", handleClick, {once : true})
+        })
     }
 
-    const restart = () => {
+    const reset = () => {
         window.location.reload();
     }
+
     return {
         start,
-        restart,
+        reset,
     }
 })();
 
@@ -73,8 +80,7 @@ function checkWin(board) {
     ]
     for(let i = 0; i < winningCombos.length; i++) {
         const [a, b, c] = winningCombos[i];
-        if (board[a]?.textContent && board[a]?.textContent === board[b]?.textContent && board[a]?.textContent === board[c]?.textContent)
-        {
+        if(board[a].textContent && board[a].textContent === board[b].textContent && board[a].textContent === board[c].textContent) {
             return true;
         }
     }
@@ -90,18 +96,12 @@ function checkTie(board) {
     })
     if(counter === 9) {
         return true;
-    }else {
-        return false;
     }
-
+    return false;
 }
 
-const restartButton = document.querySelector('#restart-btn');
-restartButton.addEventListener('click', () => {
-    Game.restart();
-})
+const startButton = document.querySelector("#start-btn");
+startButton.addEventListener("click", Game.start);
 
-const startButton = document.querySelector('#start-btn');
-startButton.addEventListener('click', () => {
-    Game.start();
-});
+const resetButton = document.querySelector("#reset-btn");
+resetButton.addEventListener("click", Game.reset);
